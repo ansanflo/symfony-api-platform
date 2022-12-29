@@ -1,2 +1,2 @@
-CREATE DATABASE IF NOT EXISTS symfony_db_test;
-GRANT ALL PRIVILEGES ON symfony_db_test.* TO 'root' IDENTIFIED BY 'root';
+CREATE DATABASE IF NOT EXISTS symfony_db;
+GRANT ALL PRIVILEGES ON symfony_db.* TO 'root' IDENTIFIED BY 'root';
