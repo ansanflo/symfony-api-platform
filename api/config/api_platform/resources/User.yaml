@@ -11,6 +11,10 @@ App\Entity\User:
         groups: [user_post]
       openapi_context:
         summary: Register a new user
+    resend_activation_email:
+      method: POST
+      path: /users/resend_activation_email
+      controller: App\Api\Action\User\ResendActivationEmail
   itemOperacions:
     get:
       method: GET
