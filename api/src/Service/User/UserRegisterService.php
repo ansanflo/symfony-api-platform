@@ -22,20 +22,18 @@ class UserRegisterService
         $this->encoderService = $encoderService;
     }
 
-    public function create(Request $request): User
+    public function create(string $name, string $email, string $password): User
     {
-        $name = RequestService::getField($request, 'name');
-        $email = RequestService::getField($request, 'email');
-        $pasword = RequestService::getField($request, 'password');
-
         $user = new User($name, $email);
-        $user->setPassword($this->encoderService->generateEncodedPassword($user, $pasword));
+        $user->setPassword($this->encoderService->generateEncodedPassword($user, $password));
 
         try {
             $this->userRepository->save($user);
         } catch (\Exception $exception) {
             throw UserAlreadyExistsException::fromEmail($email);
         }
+
+        //envío email de activación al usuario
 
         return $user;
     }

@@ -15,6 +15,84 @@ App\Entity\User:
       method: POST
       path: /users/resend_activation_email
       controller: App\Api\Action\User\ResendActivationEmail
-  itemOperacions:
+      deserialize: false
+      openapi_context:
+        summary: Resend activation email
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    required: true
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+    login:
+      method: POST
+      route_name: api_login_check
+      openapi_context:
+        summary: Login a user in the API
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  password:
+                    type: string
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    token:
+                      type: string
+
+    change_password:
+      method: POST
+      path: /users/change_password
+      controller: App\Api\Action\User\ChangePassword
+      deserialize: false
+      openapi_context:
+        summary: Changes user password
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oldPassword:
+                    type: string
+                    required: true
+                  newPassword:
+                    type: string
+                    required: true
+  itemOperations:
     get:
       method: GET
+      openapi_context:
+        summary: Gets a user
+    activate:
+      method: PUT
+      path: /users/{id}/activate
+      controller: App\Api\Action\User\ActivateAccount
+      deserialize: false
+      denormalization_context:
+        groups: [user_activate]
+      openapi_context:
+        summary: Activates a user

@@ -12,7 +12,7 @@ use App\Service\Password\EncoderService;
 use App\Service\Request\RequestService;
 use Symfony\Component\HttpFoundation\Request;
 
-class ResendActivationEmailService
+class ActivateAccountService
 {
     private UserRepository $userRepository;
 
@@ -22,16 +22,14 @@ class ResendActivationEmailService
         $this->userRepository = $userRepository;
     }
 
-    public function resend(string $email): void
+    public function activate(string $id, string $token): User
     {
-        $user = $this->userRepository->getOnyByEmailOrFail($email);
-        if($user->isActive()) {
-            throw UserIsActiveException::fromEmail($email);
-        }
+        $user = $this->userRepository->getOneInactiveByIdAndTokenOrFail($id, $token);
 
-        $user->setToken(sha1(uniqid()));
+        $user->setActive(1);
+        $user->setToken(null);
         $this->userRepository->save($user);
 
-        //envío email de activación al usuario
+        return $user;
     }
 }

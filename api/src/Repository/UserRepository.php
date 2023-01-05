@@ -16,10 +16,28 @@ class UserRepository extends BaseRepository
         return User::class;
     }
 
+    public function findOnyById(string $id): User
+    {
+        if(null === $user = $this->objectRepository->find($id)) {
+            throw UserNotFoundException::fromId($id);
+        }
+
+        return $user;
+    }
+
     public function getOnyByEmailOrFail(string $email): User
     {
         if(null === $user = $this->objectRepository->findOneBy(['email' => $email])) {
             throw UserNotFoundException::fromEmail($email);
+        }
+
+        return $user;
+    }
+
+    public function getOneInactiveByIdAndTokenOrFail(string $id, string $token): User
+    {
+        if(null === $user = $this->objectRepository->findOneBy(['id' => $id, 'token' => $token, 'active' => false])) {
+            throw UserNotFoundException::fromUserIdAndToken($id, $token);
         }
 
         return $user;
