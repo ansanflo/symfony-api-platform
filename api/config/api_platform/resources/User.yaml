@@ -11,32 +11,6 @@ App\Entity\User:
         groups: [user_post]
       openapi_context:
         summary: Register a new user
-    resend_activation_email:
-      method: POST
-      path: /users/resend_activation_email
-      controller: App\Api\Action\User\ResendActivationEmail
-      deserialize: false
-      openapi_context:
-        summary: Resend activation email
-        requestBody:
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  email:
-                    type: string
-                    required: true
-        responses:
-          200:
-            description: OK
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    message:
-                      type: string
     login:
       method: POST
       route_name: api_login_check
@@ -63,30 +37,12 @@ App\Entity\User:
                     token:
                       type: string
 
-    change_password:
-      method: POST
-      path: /users/change_password
-      controller: App\Api\Action\User\ChangePassword
-      deserialize: false
-      openapi_context:
-        summary: Changes user password
-        requestBody:
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  oldPassword:
-                    type: string
-                    required: true
-                  newPassword:
-                    type: string
-                    required: true
   itemOperations:
     get:
       method: GET
       openapi_context:
         summary: Gets a user
+
     activate:
       method: PUT
       path: /users/{id}/activate
@@ -96,3 +52,46 @@ App\Entity\User:
         groups: [user_activate]
       openapi_context:
         summary: Activates a user
+
+    resend_activation_email:
+      method: PUT
+      path: /users/{id}/resend_activation_email
+      controller: App\Api\Action\User\ResendActivationEmail
+      deserialize: false
+      openapi_context:
+        summary: Resend activation email
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    required: true
+        responses:
+          200:
+            description: OK
+            content:
+              application/ld+json:
+                $ref: '#/components/schemas/User:jsonld-user_read'
+
+      change_password:
+        method: PUT
+        path: /users/{id}/change_password
+        controller: App\Api\Action\User\ChangePassword
+        deserialize: false
+        openapi_context:
+          summary: Changes user password
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    oldPassword:
+                      type: string
+                      required: true
+                    newPassword:
+                      type: string
+                      required: true

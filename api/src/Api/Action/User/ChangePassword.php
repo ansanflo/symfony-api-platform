@@ -18,11 +18,11 @@ class ChangePassword
         $this->changePasswordService = $changePasswordService;
     }
 
-    public function __invoke(Request $request, User $user): User
+    public function __invoke(Request $request, string $id): User
     {
         $oldPassword = RequestService::getField($request, 'oldPassword');
         $newPassword = RequestService::getField($request, 'newPassword');
 
-        return $this->changePasswordService->changePassword($user->getId(), $oldPassword, $newPassword);
+        return $this->changePasswordService->changePassword($id, $oldPassword, $newPassword);
     }
 }

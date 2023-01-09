@@ -24,7 +24,7 @@ final class Version20221229102655 extends AbstractMigration
                             avatar VARCHAR(255) DEFAULT NULL, 
                             token VARCHAR(100) DEFAULT NULL, 
                             active TINYINT(1) NOT NULL DEFAULT 0, 
-                            reset_pasword_token VARCHAR(100) DEFAULT NULL, 
+                            reset_password_token VARCHAR(100) DEFAULT NULL, 
                             created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
                             updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
                             INDEX IDX_user_email (email),

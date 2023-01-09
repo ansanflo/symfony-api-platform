@@ -8,7 +8,7 @@
         <field name="avatar" length="255" nullable="true" />
         <field name="token" length="100" nullable="true" />
         <field name="active" type="boolean" />
-        <field name="resetPaswordToken" length="100" nullable="true" />
+        <field name="resetPasswordToken" length="100" nullable="true" />
         <field name="createdAt" type="datetime" />
         <field name="updatedAt" type="datetime" />
 

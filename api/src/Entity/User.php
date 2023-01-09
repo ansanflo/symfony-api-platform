@@ -16,7 +16,7 @@ class User implements UserInterface
     private ?string $password;
     private ?string $avatar;
     private ?string $token;
-    private ?string $resetPaswordToken;
+    private ?string $resetPasswordToken;
     private bool $active;
     private \DateTime $createdAt;
     private \DateTime $updatedAt;
@@ -34,7 +34,7 @@ class User implements UserInterface
         $this->password = null;
         $this->avatar = null;
         $this->token = sha1(uniqid());
-        $this->resetPaswordToken = null;
+        $this->resetPasswordToken = null;
         $this->active = false;
         $this->createdAt = new \DateTime();
         $this->markAsUpdated();
@@ -134,17 +134,17 @@ class User implements UserInterface
     /**
      * @return string|null
      */
-    public function getResetPaswordToken(): ?string
+    public function getResetPasswordToken(): ?string
     {
-        return $this->resetPaswordToken;
+        return $this->resetPasswordToken;
     }
 
     /**
-     * @param string|null $resetPaswordToken
+     * @param string|null $resetPasswordToken
      */
-    public function setResetPaswordToken(?string $resetPaswordToken): void
+    public function setResetPasswordToken(?string $resetPasswordToken): void
     {
-        $this->resetPaswordToken = $resetPaswordToken;
+        $this->resetPasswordToken = $resetPasswordToken;
     }
 
     /**
