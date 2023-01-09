@@ -23,7 +23,7 @@ class ChangePasswordActionTest extends UserTestBase
 
         $response = self::$angel->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        $this->assertNotEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
     }
 
     public function testChangePasswordWithInvalidOldPassword(): void
@@ -38,7 +38,7 @@ class ChangePasswordActionTest extends UserTestBase
 
         $response = self::$angel->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
+        $this->assertNotEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
 }

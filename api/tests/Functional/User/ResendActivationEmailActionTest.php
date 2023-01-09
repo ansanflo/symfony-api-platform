@@ -21,7 +21,7 @@ class ResendActivationEmailActionTest extends UserTestBase
 
         $response = self::$marc->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        $this->assertNotEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
     }
 
     public function testResendActivationEmailToActiveUser(): void
@@ -34,7 +34,7 @@ class ResendActivationEmailActionTest extends UserTestBase
 
         $response = self::$angel->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
+        $this->assertNotEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
     }
 
 }

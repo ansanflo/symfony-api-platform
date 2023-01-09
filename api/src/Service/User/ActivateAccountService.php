@@ -24,7 +24,7 @@ class ActivateAccountService
 
     public function activate(string $id, string $token): User
     {
-        $user = $this->userRepository->getOneInactiveByIdAndTokenOrFail($id, $token);
+        $user = $this->userRepository->findOneInactiveByIdAndTokenOrFail($id, $token);
 
         $user->setActive(1);
         $user->setToken(null);

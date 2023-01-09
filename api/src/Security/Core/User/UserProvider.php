@@ -40,7 +40,7 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
     public function loadUserByUsername(string $username): UserInterface
     {
         try {
-            return $this->userRepository->getOnyByEmailOrFail($username);
+            return $this->userRepository->findOneByEmailOrFail($username);
         } catch (UserNotFoundException $exception) {
             throw new UsernameNotFoundException(sprintf('User $s not found', $username));
         }

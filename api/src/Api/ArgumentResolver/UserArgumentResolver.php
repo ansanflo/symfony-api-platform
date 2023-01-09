@@ -39,6 +39,6 @@ class UserArgumentResolver implements ArgumentValueResolverInterface
 
     public function resolve(Request $request, ArgumentMetadata $argument): \Generator
     {
-        yield $this->userRepository->getOnyByEmailOrFail($this->tokenStorage->getToken()->getUser()->getEmail());
+        yield $this->userRepository->findOneByEmailOrFail($this->tokenStorage->getToken()->getUser()->getEmail());
     }
 }

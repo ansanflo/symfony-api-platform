@@ -9,6 +9,7 @@ use App\Exceptions\User\UserAlreadyExistsException;
 use App\Repository\UserRepository;
 use App\Service\Password\EncoderService;
 use App\Service\Request\RequestService;
+use Doctrine\ORM\Exception\ORMException;
 use Symfony\Component\HttpFoundation\Request;
 
 class UserRegisterService
@@ -29,7 +30,7 @@ class UserRegisterService
 
         try {
             $this->userRepository->save($user);
-        } catch (\Exception $exception) {
+        } catch (ORMException $exception) {
             throw UserAlreadyExistsException::fromEmail($email);
         }
 

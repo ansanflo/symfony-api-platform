@@ -49,7 +49,7 @@ class TestBase extends WebTestCase
 
     private function createAuthenticatedUser(KernelBrowser &$client, string $email): void
     {
-        $user = $this->getContainer()->get('App\Repository\UserRepository')->getOnyByEmailOrFail($email);
+        $user = $this->getContainer()->get('App\Repository\UserRepository')->findOneByEmailOrFail($email);
         $token = $this
             ->getContainer()
             ->get('Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface')

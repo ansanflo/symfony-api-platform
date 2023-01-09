@@ -24,7 +24,7 @@ class ResendActivationEmailService
 
     public function resend(string $email): void
     {
-        $user = $this->userRepository->getOnyByEmailOrFail($email);
+        $user = $this->userRepository->findOneByEmailOrFail($email);
         if($user->isActive()) {
             throw UserIsActiveException::fromEmail($email);
         }
