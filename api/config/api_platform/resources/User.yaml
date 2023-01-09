@@ -76,22 +76,22 @@ App\Entity\User:
               application/ld+json:
                 $ref: '#/components/schemas/User:jsonld-user_read'
 
-      change_password:
-        method: PUT
-        path: /users/{id}/change_password
-        controller: App\Api\Action\User\ChangePassword
-        deserialize: false
-        openapi_context:
-          summary: Changes user password
-          requestBody:
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    oldPassword:
-                      type: string
-                      required: true
-                    newPassword:
-                      type: string
-                      required: true
+    change_password:
+      method: PUT
+      path: /users/{id}/change_password
+      controller: App\Api\Action\User\ChangePassword
+      deserialize: false
+      openapi_context:
+        summary: Changes user password
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oldPassword:
+                    type: string
+                    required: true
+                  newPassword:
+                    type: string
+                    required: true
